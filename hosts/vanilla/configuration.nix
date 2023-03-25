@@ -65,7 +65,7 @@
         vaapiVdpau
         libvdpau-va-gl
         vaapiIntel
-	intel-compute-runtime
+        intel-compute-runtime
       ];
     };
   };
@@ -75,7 +75,7 @@
   users.users.mayo = {
     isNormalUser = true;
     description = "mayo";
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "storage" "libvirtd"];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "storage" "libvirtd" ];
     shell = pkgs.zsh;
     home = "/home/mayo";
   };
@@ -104,9 +104,9 @@
   environment = {
 
     sessionVariables = with pkgs; {
-      _JAVA_AWT_WM_NONREPARENTING="1";
-      MUTTER_DEBUG_FORCE_KMS_MODE="simple";
-      MOZ_ENABLE_WAYLAND="1";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+      MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
+      MOZ_ENABLE_WAYLAND = "1";
     };
 
     variables = {
@@ -155,15 +155,13 @@
 
       gnome.gnome-tweaks
       gnome.gnome-terminal
-      
-      gnomeExtensions.desktop-icons-ng-ding
     ];
   };
 
   environment.gnome.excludePackages = (with pkgs; [
-      gnome-photos
-      gnome-tour
-      gnome-console
+    gnome-photos
+    gnome-tour
+    gnome-console
   ]) ++ (with pkgs.gnome; [
     cheese # webcam tool
     gnome-music
@@ -190,7 +188,6 @@
     printing.enable = true;
     blueman.enable = true;
     flatpak.enable = true;
-    #upower.enable = true;
     #tlp.enable = true; CONFLICT DUE TO POWER-PROFILE-DAEMON BY GNOME
 
     pipewire = {
@@ -200,38 +197,24 @@
     };
 
     xserver = {
-      
+
       enable = true;
-      
       videoDrivers = [ "modesetting" ];
       deviceSection = ''
         Option "TearFree" "true"
       '';
       excludePackages = [ pkgs.xterm ];
-
-      displayManager.gdm.enable = true;
-      
-      desktopManager.gnome.enable = true;
-
-      #displayManager.defaultSession = "none+awesome";
-      
-      #displayManager.sessionPackages = [
-      #  (pkgs.wayfire-unstable.overrideAttrs
-      #    (prevAttrs: rec {
-      #      passthru.providedSessions = [ "wayfire" ];
-      #    })
-      #  )
-      #];
-
       layout = "us";
-      
       libinput = {
         enable = true;
         touchpad = {
           tapping = true;
         };
       };
-      
+
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+
       windowManager = {
         awesome = {
           enable = true;

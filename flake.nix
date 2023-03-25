@@ -33,7 +33,7 @@
               ];
             }
 
-            ./configuration.nix
+            ./hosts/vanilla/configuration.nix
 
             home-manager.nixosModules.home-manager
             {
