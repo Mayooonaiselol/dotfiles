@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 My dotfiles. May or May not work, use at your own risk.
 
 ## Showcase:
