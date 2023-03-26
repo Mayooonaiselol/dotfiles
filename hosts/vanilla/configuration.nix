@@ -3,7 +3,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../users/shared/desktop/default.nix
+    ../../system/shared/desktop/default.nix
+    ../../system/shared/editors/default.nix
   ];
 
   boot = {
@@ -88,57 +89,24 @@
     rtkit.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-    ];
-  };
-
-  qt5.enable = true;
-  qt5.platformTheme = "gtk2";
-  qt5.style = "gtk2";
-
   zramSwap = {
     enable = true;
     memoryPercent = 100;
   };
 
   environment = {
-
-    sessionVariables = rec {
-      _JAVA_AWT_WM_NONREPARENTING = "1";
-      MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
-      MOZ_ENABLE_WAYLAND = "1";
-      XDG_CACHE_HOME = "\${HOME}/.cache";
-      XDG_CONFIG_HOME = "\${HOME}/.config";
-      XDG_BIN_HOME = "\${HOME}/.local/bin";
-      XDG_DATA_HOME = "\${HOME}/.local/share";
-
-      PATH = [
-        "\${HOME}/.bin"
-        "\${XDG_BIN_HOME}"
-        "\${HOME}/.node_modules"
-      ];
-    };
-
     systemPackages = with pkgs; [
-      (python3.withPackages (ps: with ps; [ pandas numpy matplotlib ]))
       lsof
       virt-manager
       pulseaudio
       firefox
       tree
-      cargo
-      nodePackages.npm
       kitty
-      neovim
       wget
       git
       htop
       pamixer
       pavucontrol
-      gcc
       zip
       unzip
       psmisc
@@ -182,26 +150,6 @@
   programs = {
     gamemode.enable = true;
     dconf.enable = true;
-  };
-
-  fonts = {
-    fonts = with pkgs; [
-      twemoji-color-font
-      material-icons
-      roboto
-      (nerdfonts.override { fonts = [ "RobotoMono" "JetBrainsMono" ]; })
-    ];
-
-    fontconfig = {
-      enable = true;
-
-      defaultFonts = {
-        serif = [ "RobotoMono Regular" ];
-        sansSerif = [ "RobotoMono Regular" ];
-        monospace = [ "JetBrainsMono Nerd Font" ];
-        emoji = [ "Twitter Color Emoji" ];
-      };
-    };
   };
 
   virtualisation.libvirtd.enable = true;

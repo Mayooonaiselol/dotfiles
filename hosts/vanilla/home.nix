@@ -46,15 +46,4 @@
   };
 
   home.sessionVariables.GTK_THEME = "Colloid-Dark";
-
-  home.packages = with pkgs; [
-    discord
-    obs-studio
-    gimp
-    flameshot
-    pfetch
-    lsd
-    libreoffice-fresh
-    drawing
-  ];
 }
