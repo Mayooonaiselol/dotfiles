@@ -1,10 +1,14 @@
 { config, pkgs, lib, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix
     ../../system/shared/desktop/default.nix
-    ../../system/shared/editors/default.nix
+    ../../system/shared/apps/default.nix
+    ../../system/shared/dev/default.nix
+    ../../system/mango/env.nix
+    ../../system/mango/fonts.nix
+    ../../system/mango/hardware.nix
+    ../../system/mango/services.nix
   ];
 
   boot = {
@@ -46,34 +50,7 @@
   };
 
   time.timeZone = "Asia/Kolkata";
-
-  hardware = {
-
-    bluetooth = {
-      enable = true;
-      powerOnBoot = false;
-    };
-
-    cpu.intel.updateMicrocode = true;
-
-    pulseaudio.enable = false;
-
-    enableAllFirmware = true;
-    enableRedistributableFirmware = true;
-
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-        vaapiIntel
-        intel-compute-runtime
-      ];
-    };
-  };
-
+  
   nixpkgs.config.allowUnfree = true;
 
   users.users.mayo = {
@@ -93,66 +70,6 @@
     enable = true;
     memoryPercent = 100;
   };
-
-  environment = {
-    systemPackages = with pkgs; [
-      lsof
-      virt-manager
-      pulseaudio
-      firefox
-      tree
-      kitty
-      wget
-      git
-      htop
-      pamixer
-      pavucontrol
-      zip
-      unzip
-      psmisc
-      blanket
-    ];
-  };
-
-  services = {
-
-    printing.enable = true;
-    blueman.enable = true;
-    flatpak.enable = true;
-    #tlp.enable = true; CONFLICT DUE TO POWER-PROFILE-DAEMON BY GNOME
-
-    pipewire = {
-      enable = true;
-      jack.enable = true;
-      pulse.enable = true;
-    };
-
-    xserver = {
-
-      enable = true;
-      videoDrivers = [ "modesetting" ];
-      deviceSection = ''
-        Option "TearFree" "true"
-      '';
-      excludePackages = [ pkgs.xterm ];
-      layout = "us";
-      libinput = {
-        enable = true;
-        touchpad = {
-          tapping = true;
-        };
-      };
-
-      displayManager.gdm.enable = true;
-    };
-  };
-
-  programs = {
-    gamemode.enable = true;
-    dconf.enable = true;
-  };
-
-  virtualisation.libvirtd.enable = true;
 
   nix = {
     package = pkgs.nixFlakes;

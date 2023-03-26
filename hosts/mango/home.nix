@@ -2,10 +2,9 @@
 
 {
   imports = [
-    ../../users/shared/editors/default.nix
+    ../../users/shared/editors/neovim.nix
     ../../users/shared/apps/default.nix
-    ../../users/shared/dev/default.nix
-    ../../users/vanilla/desktop/default.nix
+    ../../users/mango/desktop/sway.nix
   ];
 
   home.username = "mayo";

@@ -9,5 +9,6 @@
     lsd
     libreoffice-fresh
     drawing
+    firefox
   ];
 }

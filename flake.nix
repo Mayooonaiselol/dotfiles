@@ -33,14 +33,14 @@
               ];
             }
 
-            ./hosts/vanilla/configuration.nix
+            ./hosts/mango/configuration.nix
 
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.mayo = {
-                imports = [ ./home.nix ];
+                imports = [ ./hosts/mango/home.nix ];
               };
             }
           ];
@@ -53,7 +53,7 @@
           homeDirectory = "/home/mayo";
           configuration = {
             imports = [
-              ./home.nix
+              ./hosts/mango/home.nix
             ];
           };
         };
