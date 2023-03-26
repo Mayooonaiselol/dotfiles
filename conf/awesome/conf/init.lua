@@ -1,0 +1,5 @@
+require 'conf.rules'
+require 'conf.autofocus'
+require 'conf.layouts'
+require 'conf.keys'
+require 'conf.mousebinds'

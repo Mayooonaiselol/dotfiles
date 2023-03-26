@@ -1,7 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ 
+    ./hardware-configuration.nix
+    ../../users/vanilla/system
+  ];
 
   boot = {
     loader = {
@@ -107,12 +110,6 @@
       _JAVA_AWT_WM_NONREPARENTING = "1";
       MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
       MOZ_ENABLE_WAYLAND = "1";
-    };
-
-    variables = {
-      TERMINAL = "kitty";
-      EDITOR = "nvim";
-      VISUAL = "nvim";
     };
 
     systemPackages = with pkgs; [
@@ -242,18 +239,9 @@
       enable = true;
 
       defaultFonts = {
-        serif = [
-          "RobotoMono Regular"
-        ];
-
-        sansSerif = [
-          "RobotoMono Regular"
-        ];
-
-        monospace = [
-          "JetBrainsMono Nerd Font"
-        ];
-
+        serif = [ "RobotoMono Regular" ];
+        sansSerif = [ "RobotoMono Regular" ];
+        monospace = [ "JetBrainsMono Nerd Font" ];
         emoji = [ "Twitter Color Emoji" ];
       };
     };

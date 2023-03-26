@@ -1,0 +1,123 @@
+@theme "/dev/null" /* Important, otherwise separator visible */
+
+* {
+    font:   "Roboto 12";
+
+    bg0:    #1a2025b3;
+    bg1:    #323d47ff;
+    bg2:    #afb7c0b3;
+    fg0:    #e5e8e6;
+    fg1:    #afb7c0;
+}
+
+configuration {
+    display-drun: ">";
+    drun-display-format: "{name}";
+}
+
+window {
+    transparency:   "real";
+    location:       north;
+    y-offset:       35px;
+    width:          440;
+    border-radius:  7px;
+    border:         1px;
+    border-color:   @bg2; 
+    children: [mainbox];
+    
+    background-color:   @bg0;
+}
+
+mainbox {
+    padding:    12px;
+    spacing:    0.5em;
+    background-color: @bg0;
+    children: [inputbar, listview];
+}
+
+inputbar {
+    background-color:   @bg1;
+    border-color:       @bg2;
+
+    border:         1px;
+    border-radius:  7px;
+
+    padding:    8px 16px;
+    spacing:    8px;
+    children:   [ prompt, entry ];
+}
+
+prompt {
+    text-color: @fg0;
+    background-color: @bg1;
+}
+
+entry {
+    placeholder:        "Type here to Search";
+    placeholder-color:  @fg1;
+    background-color: @bg1;
+    text-color: @fg0;
+}
+
+message {
+    margin:             12px 0 0;
+    border-radius:      7px;
+    border-color:       @bg2;
+    background-color:   @bg2;
+}
+
+textbox {
+    padding:    8px 24px;
+}
+
+listview {
+    background-color:   transparent;
+
+    margin:     12px 0 0;
+    lines:      5;
+    columns:    1;
+
+    fixed-height: false;
+}
+
+element {
+    padding:        8px 16px;
+    spacing:        8px;
+    border-radius:  7px;
+    background-color: @bg0;
+    foreground-color: @fg0;
+    children: [element-icon, element-text];
+}
+
+element {
+    text-color: @bg1;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg1;
+}
+
+element normal normal, element alternate normal {
+    background-color:   inherit;
+    foreground-color:   @fg0; 
+  }
+
+element-icon {
+    size:           32px;
+    background-color: transparent;
+    vertical-align: 0.5;
+}
+
+element-text {
+    text-color: @fg0;
+    background-color: inherit;
+}
+
+element selected {
+    text-color: @fg0;
+}
+
+scrollbar {
+    width:        0px ;
+    handle-width: 0px ;
+}

@@ -1,0 +1,7 @@
+require 'signal.battery'
+require 'signal.network'
+require 'signal.sound'
+require 'signal.uptime'
+require 'signal.toggle'
+require 'signal.brightness'
+require 'signal.client'
