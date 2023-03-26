@@ -16,6 +16,8 @@
       unzip
       psmisc
       blanket
+      neovim
+      firefox
     ];
   };
 

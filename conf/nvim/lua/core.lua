@@ -22,6 +22,7 @@ opt.number = true
 opt.numberwidth = 1
 opt.relativenumber = false
 opt.signcolumn = "yes"
+opt.title = false
 
 opt.switchbuf = "newtab"
 opt.splitbelow = true
@@ -43,9 +44,6 @@ opt.smartcase = true
 opt.whichwrap:append "<>[]hl"
 
 opt.shortmess:append "sI"
-
--- Minimal statusline
--- opt.statusline = "%F%m%r%h%w: %2l"
 
 local built_ins = {
   "2html_plugin",

@@ -19,7 +19,8 @@ local modules = {
   'keys',
   'colors',
   'plug',
-  'autocmds'
+  'autocmds',
+  'statusline'
 }
 
 for i, a in ipairs(modules) do
