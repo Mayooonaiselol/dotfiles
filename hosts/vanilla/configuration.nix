@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ 
+  imports = [
     ./hardware-configuration.nix
-    ../../users/vanilla/system
+    ../../users/shared/desktop/default.nix
   ];
 
   boot = {
@@ -106,38 +106,35 @@
 
   environment = {
 
-    sessionVariables = with pkgs; {
+    sessionVariables = rec {
       _JAVA_AWT_WM_NONREPARENTING = "1";
       MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
       MOZ_ENABLE_WAYLAND = "1";
+      XDG_CACHE_HOME = "\${HOME}/.cache";
+      XDG_CONFIG_HOME = "\${HOME}/.config";
+      XDG_BIN_HOME = "\${HOME}/.local/bin";
+      XDG_DATA_HOME = "\${HOME}/.local/share";
+
+      PATH = [
+        "\${HOME}/.bin"
+        "\${XDG_BIN_HOME}"
+        "\${HOME}/.node_modules"
+      ];
     };
 
     systemPackages = with pkgs; [
       (python3.withPackages (ps: with ps; [ pandas numpy matplotlib ]))
-      #(wayfire-unstable.overrideAttrs (prevAttrs: rec {
-      #  passthru.providedSessions = [ "wayfire" ];
-      #}))
-      #wcm
-      #wayfireApplications-unwrapped.wayfirePlugins.wf-shell
-      #wofi
-      #wf-config
-      wlr-randr
       lsof
-      libsForQt5.qt5.qtgraphicaleffects
       virt-manager
-      xorg.xrandr
       pulseaudio
       firefox
       tree
-      brightnessctl
       cargo
       nodePackages.npm
       kitty
       neovim
-      feh
       wget
       git
-      mesa
       htop
       pamixer
       pavucontrol
@@ -145,40 +142,9 @@
       zip
       unzip
       psmisc
-
       blanket
-
-      gjs # gnome's js
-
-      gnome.gnome-tweaks
-      gnome.gnome-terminal
     ];
   };
-
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-    gnome-console
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    gnome-maps
-    gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
-    gnome-characters
-    gnome-clocks
-    gnome-contacts
-    yelp
-    gnome-software
-    simple-scan
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-  ]);
 
   services = {
 
@@ -210,21 +176,12 @@
       };
 
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-
-      windowManager = {
-        awesome = {
-          enable = true;
-          package = pkgs.awesome-git;
-        };
-      };
     };
   };
 
   programs = {
     gamemode.enable = true;
     dconf.enable = true;
-    sway.enable = true;
   };
 
   fonts = {
