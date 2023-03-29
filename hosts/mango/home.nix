@@ -5,6 +5,8 @@
     ../../users/shared/editors/neovim.nix
     ../../users/shared/apps/default.nix
     ../../users/mango/desktop/sway.nix
+    ../../users/mango/apps/default.nix
+    # ../../users/mango/desktop/awesome.nix
   ];
 
   home.username = "mayo";

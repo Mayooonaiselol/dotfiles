@@ -2,7 +2,6 @@
 {
   imports = [
     ./gnome.nix
-    ./awesome.nix
     ./sway.nix
   ];
 

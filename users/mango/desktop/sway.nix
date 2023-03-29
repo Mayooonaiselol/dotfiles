@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  xdg.configFile."sway/config".source = ../../../conf/sway/config;
-  xdg.configFile."swaylock/config".source = ../../../conf/swaylock/config;
-  xdg.configFile."swaynag/config".source = ../../../conf/swaynag/config;
+  home.file.".config/sway".source = ../../../conf/sway;
+  home.file.".config/swaylock".source = ../../../conf/swaylock;
+  home.file.".config/swaynag".source = ../../../conf/swaynag;
 }

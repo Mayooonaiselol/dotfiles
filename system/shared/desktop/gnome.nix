@@ -2,10 +2,10 @@
 {
   environment = {
     systemPackages = with pkgs; [
-      gjs # gnome's js
-
+      gjs
       gnome.gnome-tweaks
       gnome.gnome-terminal
+      gnomeExtensions.desktop-icons-ng-ding
     ];
 
     gnome.excludePackages = (with pkgs; [
@@ -32,9 +32,5 @@
       hitori # sudoku game
       atomix # puzzle game
     ]);
-  };
-
-  services.xserver = {
-    desktopManager.gnome.enable = true;
   };
 }

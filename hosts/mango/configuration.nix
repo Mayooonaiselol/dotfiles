@@ -7,8 +7,6 @@
     ../../system/shared/dev/default.nix
     ../../system/mango/env.nix
     ../../system/mango/fonts.nix
-    ../../system/mango/hardware.nix
-    ../../system/mango/services.nix
   ];
 
   boot = {
@@ -69,6 +67,74 @@
   zramSwap = {
     enable = true;
     memoryPercent = 100;
+  };
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
+
+    cpu.intel.updateMicrocode = true;
+
+    pulseaudio.enable = false;
+
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        vaapiIntel
+        intel-compute-runtime
+      ];
+    };
+  };
+
+  services = {
+
+    printing.enable = true;
+    blueman.enable = true;
+    flatpak.enable = true;
+
+    pipewire = {
+      enable = true;
+      jack.enable = true;
+      pulse.enable = true;
+    };
+
+    xserver = {
+
+      enable = true;
+      videoDrivers = [ "modesetting" ];
+      deviceSection = ''
+        Option "TearFree" "true"
+        '';
+      excludePackages = [ pkgs.xterm ];
+      layout = "us";
+      libinput = {
+        enable = true;
+        touchpad = {
+          tapping = true;
+        };
+      };
+
+      displayManager.gdm.enable = true;
+
+      desktopManager.gnome.enable = true;
+
+      windowManager = {
+        awesome = {
+          enable = true;
+          package = pkgs.awesome-git;
+        };
+      };
+
+    };
   };
 
   nix = {

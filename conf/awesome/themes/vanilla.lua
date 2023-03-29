@@ -13,7 +13,7 @@ local theme = {}
 local os = os
 
 -- wallpaper
-theme.wpdir     = os.getenv("HOME") .. "/wallpapers"
+theme.wpdir     = os.getenv("HOME") .. "/Desktop/wallpapers"
 theme.wallpaper = theme.wpdir .. "/wallhaven-j3j5vm.jpg"
 
 -- profile picture
